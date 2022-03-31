@@ -1,14 +1,3 @@
-apply plugin: "java"
-
-version '1.0'
-
-targetCompatibility = 8
-sourceCompatibility = 8
-
-sourceSets.main.java.srcDirs = ["src"]
-
-var useKotlin = false
-
 buildscript {
     repositories {
         mavenCentral()
@@ -22,11 +11,18 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
+var useKotlin = false
+apply plugin: "java"
+sourceSets.main.java.srcDirs = ["src"]
+version '1.0'
 if (useKotlin) {
     apply plugin: "kotlin"
-
     sourceSets.main.kotlin.srcDirs = ["src"]
 }
+
+targetCompatibility = 8
+sourceCompatibility = 8
+
 repositories {
     mavenCentral()
     maven { url 'https://www.jitpack.io' }

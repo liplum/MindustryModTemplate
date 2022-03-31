@@ -1,7 +1,7 @@
 # Mindustry Mod Template
 A template for Mindustry modding.
 
-English|<u>[中文](README_CN.md)</u>
+English | [中文](README_CN.md)
 
 ![ICON](icon.png)
 

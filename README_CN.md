@@ -1,7 +1,7 @@
 # Mindustry Mod 开发模板
 用于 Mindustry Mod 开发的模板
 
-<u>[English](README.md)</u>|中文
+[English](README.md) | 中文
 
 ![ICON](icon.png)
 
