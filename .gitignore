@@ -154,3 +154,7 @@ gradle-app.setting
 .DS_Store
 Thumbs.db
 android/libs/
+
+## Run Mindustry game in project will generate those
+run
+cache

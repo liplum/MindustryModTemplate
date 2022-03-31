@@ -5,6 +5,11 @@
 
 ![ICON](icon.png)
 
+This page is outdated and needs to be translated. 
+
+## 要求
+- **Java:** Java 8 SDK
+
 ## 功能
 
 - **自动编译**：每一个以 "[AR]" 开头的 commit 都会自动在 Github Action 编译任务成功之后自动生成新版本，以用于 [Anuken/MindustryMods](https://github.com/Anuken/MindustryMods) 的检查。最新的自动编译版将会自动覆盖旧版。
