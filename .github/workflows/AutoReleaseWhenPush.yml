@@ -20,7 +20,7 @@ jobs:
       - name: Get short commit hash
         run: echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
-      - name: Build DST
+      - name: Build MdtModTemplate
         run: |
           chmod +x gradlew
           ./gradlew deploy
