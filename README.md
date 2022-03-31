@@ -1,7 +1,9 @@
 # Mindustry Mod Template
 A template for Mindustry modding.
 
-![DST](icon.png)
+English|<u>[中文](README_CN.md)</u>
+
+![ICON](icon.png)
 
 ## Functions
 - **Auto-release:** Every commit started with "\[AR]" will automatically generate a new release after succeeding in Build Task by GitHub Actions, for [Anuken/MindustryMods](https://github.com/Anuken/MindustryMods) checking. The latest auto-release will replace the old one.

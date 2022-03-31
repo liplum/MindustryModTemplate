@@ -103,7 +103,7 @@ task debugJar {
             return
         var jarFile = new File("$buildDir/libs/${project.archivesBaseName}Desktop.jar")
         if (!jarFile.exists()) {
-            logger.warn("Jar cannot be found at ${jarFile.path}")
+            logger.error("Jar cannot be found at ${jarFile.path}")
             return
         }
         // I only program on Windows.
@@ -131,6 +131,10 @@ task copyJar {
         if (!shouldCopy)
             return
         var jarFile = new File("$buildDir/libs/${project.archivesBaseName}Desktop.jar")
+        if (!jarFile.exists()) {
+            logger.error("Jar cannot be found at ${jarFile.path}")
+            return
+        }
         if (Os.isFamily(Os.FAMILY_WINDOWS)) {
             var APPDATA = System.getenv("APPDATA")
             var modsFolder = APPDATA + '/Mindustry/mods'
