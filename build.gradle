@@ -97,20 +97,36 @@ def copyJarFile(jarFile, modsFolder) {
     }
 }
 
+def getOutputJar() {
+    var jarFile = new File("$buildDir/libs/${project.archivesBaseName}Desktop.jar")
+    if (!jarFile.exists()) {
+        logger.lifecycle("Jar cannot be found at ${jarFile.path}")
+        return null
+    }
+    return jarFile
+}
+
 task copyJar {
     dependsOn jar
     doLast {
-        var jarFile = new File("$buildDir/libs/${project.archivesBaseName}Desktop.jar")
-        if (!jarFile.exists()) {
-            logger.lifecycle("Jar cannot be found at ${jarFile.path}")
-            return
-        }
+        var jarFile = getOutputJar()
+        if(jarFile == null) return
         if (Os.isFamily(Os.FAMILY_WINDOWS)) {
             var APPDATA = System.getenv("APPDATA")
             var modsFolder = APPDATA + '/Mindustry/mods'
             mkdir modsFolder
             copyJarFile(jarFile, modsFolder)
         }
+    }
+}
+
+task copyJarServer {
+    dependsOn jar
+    doLast {
+        var jarFile = getOutputJar()
+        if(jarFile == null) return
+        var modsFolder = new File("$rootDir/config/mods")
+        copyJarFile(jarFile, modsFolder)
     }
 }
 
@@ -175,15 +191,15 @@ task runMod(dependsOn: classes, type: JavaExec) {
     dependsOn copyJar
     dependsOn downloadDesktop
     def gameFile = new File("$rootDir/run/Mindustry${mdtVersionNum}.jar")
-    main = "-jar"
+    mainClass.set("-jar")
     args = [gameFile.path]
 }
 
 task runModServer(dependsOn: classes, type: JavaExec) {
-    dependsOn copyJar
+    dependsOn copyJarServer
     dependsOn downloadServer
     def gameFile = new File("$rootDir/run/MindustryServer${mdtVersionNum}.jar")
-    main = "-jar"
+    mainClass.set("-jar")
     standardInput = System.in
     args = [gameFile.path]
 }
