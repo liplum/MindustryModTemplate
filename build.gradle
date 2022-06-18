@@ -170,7 +170,7 @@ class DownloadTask extends DefaultTask {
 }
 
 task downloadDesktop(type: DownloadTask) {
-    sourceUrl = "http://github.com/Anuken/Mindustry/releases/download/${GameLaunchVersion}/Mindustry.jar"
+    sourceUrl = "http://github.com/Anuken/Mindustry/releases/download/v${GameLaunchVersion}/Mindustry.jar"
     targetFile = new File("$rootDir/run/Mindustry${GameLaunchVersion}.jar")
     if (!targetFile.exists()) {
         logger.lifecycle("Downloading Mindustry ${GameLaunchVersion}.")
@@ -180,7 +180,7 @@ task downloadDesktop(type: DownloadTask) {
 }
 
 task downloadServer(type: DownloadTask) {
-    sourceUrl = "https://github.com/Anuken/Mindustry/releases/download/${GameLaunchVersion}/server-release.jar"
+    sourceUrl = "https://github.com/Anuken/Mindustry/releases/download/v${GameLaunchVersion}/server-release.jar"
     targetFile = new File("$rootDir/run/MindustryServer${GameLaunchVersion}.jar")
     if (!targetFile.exists()) {
         logger.lifecycle("Downloading Mindustry Server ${GameLaunchVersion}.")
