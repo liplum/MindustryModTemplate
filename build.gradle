@@ -4,6 +4,7 @@ buildscript {
     }
     ext {
         MindustryVersion = property('MindustryVersion') as String
+        ArcVersion = property('ArcVersion') as String
         KotlinVersion = property('KotlinVersion') as String
         GameLaunchVersion = property('GameLaunchVersion') as String
         sdkRoot = System.getenv('ANDROID_HOME') ?: System.getenv('ANDROID_SDK_ROOT')
@@ -33,9 +34,9 @@ repositories {
 }
 
 dependencies {
-    compileOnly "com.github.Anuken.Arc:arc-core:$MindustryVersion"
+    compileOnly "com.github.Anuken.Arc:arc-core:$ArcVersion"
     compileOnly "com.github.Anuken.Mindustry:core:$MindustryVersion"
-    testCompileOnly "com.github.Anuken.Arc:arc-core:$MindustryVersion"
+    testCompileOnly "com.github.Anuken.Arc:arc-core:$ArcVersion"
     testCompileOnly "com.github.Anuken.Mindustry:core:$MindustryVersion"
     testImplementation "com.github.Anuken.Mindustry:desktop:$MindustryVersion"
     testImplementation "com.github.Anuken.Mindustry:server:$MindustryVersion"
