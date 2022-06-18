@@ -3,13 +3,13 @@ buildscript {
         mavenCentral()
     }
     ext {
-        mdtVersion = property('MindustryVersion') as String
-        mdtVersionNum = mdtVersion.replace('v', '') as String
-        kotlinVersion = property('KotlinVersion') as String
+        MindustryVersion = property('MindustryVersion') as String
+        KotlinVersion = property('KotlinVersion') as String
+        GameLaunchVersion = property('GameLaunchVersion') as String
         sdkRoot = System.getenv('ANDROID_HOME') ?: System.getenv('ANDROID_SDK_ROOT')
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$KotlinVersion"
     }
 }
 // Add any plugin you want
@@ -17,8 +17,8 @@ plugins {
 }
 var useKotlin = Boolean.parseBoolean(property("UseKotlin") as String)
 apply plugin: "java"
-sourceSets.main.java.srcDirs = ["src"]
 version '1.0'
+sourceSets.main.java.srcDirs = ["src"]
 if (useKotlin) {
     apply plugin: "kotlin"
     sourceSets.main.kotlin.srcDirs = ["src"]
@@ -33,12 +33,12 @@ repositories {
 }
 
 dependencies {
-    compileOnly "com.github.Anuken.Arc:arc-core:$mdtVersion"
-    compileOnly "com.github.Anuken.Mindustry:core:$mdtVersion"
-    testCompileOnly "com.github.Anuken.Arc:arc-core:$mdtVersion"
-    testCompileOnly "com.github.Anuken.Mindustry:core:$mdtVersion"
-    testImplementation "com.github.Anuken.Mindustry:desktop:$mdtVersion"
-    testImplementation "com.github.Anuken.Mindustry:server:$mdtVersion"
+    compileOnly "com.github.Anuken.Arc:arc-core:$MindustryVersion"
+    compileOnly "com.github.Anuken.Mindustry:core:$MindustryVersion"
+    testCompileOnly "com.github.Anuken.Arc:arc-core:$MindustryVersion"
+    testCompileOnly "com.github.Anuken.Mindustry:core:$MindustryVersion"
+    testImplementation "com.github.Anuken.Mindustry:desktop:$MindustryVersion"
+    testImplementation "com.github.Anuken.Mindustry:server:$MindustryVersion"
 }
 
 task jarAndroid {
@@ -168,20 +168,20 @@ class DownloadTask extends DefaultTask {
 }
 
 task downloadDesktop(type: DownloadTask) {
-    sourceUrl = "http://github.com/Anuken/Mindustry/releases/download/${mdtVersion}/Mindustry.jar"
-    targetFile = new File("$rootDir/run/Mindustry${mdtVersionNum}.jar")
+    sourceUrl = "http://github.com/Anuken/Mindustry/releases/download/${GameLaunchVersion}/Mindustry.jar"
+    targetFile = new File("$rootDir/run/Mindustry${GameLaunchVersion}.jar")
     if (!targetFile.exists()) {
-        logger.lifecycle("Downloading Mindustry ${mdtVersion}.")
+        logger.lifecycle("Downloading Mindustry ${GameLaunchVersion}.")
     } else {
         logger.lifecycle("You have already downloaded this Mindustry.")
     }
 }
 
 task downloadServer(type: DownloadTask) {
-    sourceUrl = "https://github.com/Anuken/Mindustry/releases/download/${mdtVersion}/server-release.jar"
-    targetFile = new File("$rootDir/run/MindustryServer${mdtVersionNum}.jar")
+    sourceUrl = "https://github.com/Anuken/Mindustry/releases/download/${GameLaunchVersion}/server-release.jar"
+    targetFile = new File("$rootDir/run/MindustryServer${GameLaunchVersion}.jar")
     if (!targetFile.exists()) {
-        logger.lifecycle("Downloading Mindustry Server ${mdtVersion}.")
+        logger.lifecycle("Downloading Mindustry Server ${GameLaunchVersion}.")
     } else {
         logger.lifecycle("You have already downloaded this Mindustry Server.")
     }
@@ -190,14 +190,14 @@ task downloadServer(type: DownloadTask) {
 task runMod(dependsOn: classes, type: JavaExec) {
     dependsOn copyJar
     dependsOn downloadDesktop
-    def gameFile = new File("$rootDir/run/Mindustry${mdtVersionNum}.jar")
+    def gameFile = new File("$rootDir/run/Mindustry${GameLaunchVersion}.jar")
     mainClass.set("-jar")
     args = [gameFile.path]
 }
 
 task runGame(dependsOn: classes, type: JavaExec) {
     dependsOn downloadDesktop
-    def gameFile = new File("$rootDir/run/Mindustry${mdtVersionNum}.jar")
+    def gameFile = new File("$rootDir/run/Mindustry${GameLaunchVersion}.jar")
     mainClass.set("-jar")
     args = [gameFile.path]
 }
@@ -206,7 +206,7 @@ task runGame(dependsOn: classes, type: JavaExec) {
 task runModServer(dependsOn: classes, type: JavaExec) {
     dependsOn copyJarServer
     dependsOn downloadServer
-    def gameFile = new File("$rootDir/run/MindustryServer${mdtVersionNum}.jar")
+    def gameFile = new File("$rootDir/run/MindustryServer${GameLaunchVersion}.jar")
     mainClass.set("-jar")
     standardInput = System.in
     args = [gameFile.path]
@@ -214,7 +214,7 @@ task runModServer(dependsOn: classes, type: JavaExec) {
 
 task runServer(dependsOn: classes, type: JavaExec) {
     dependsOn downloadServer
-    def gameFile = new File("$rootDir/run/MindustryServer${mdtVersionNum}.jar")
+    def gameFile = new File("$rootDir/run/MindustryServer${GameLaunchVersion}.jar")
     mainClass.set("-jar")
     standardInput = System.in
     args = [gameFile.path]
