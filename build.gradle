@@ -1,11 +1,6 @@
-buildscript {
-    repositories {
-        maven { url "https://www.jitpack.io" }
-    }
-}
 plugins {
     id 'java'
-    id "io.github.liplum.mgpp" version "1.0.3"
+    id "io.github.liplum.mgpp" version "1.0.6"
 }
 
 group 'org.example'

@@ -12,5 +12,8 @@ All functions come from A gradle plugin -- [mgpp](https://github.com/PlumyGame/m
 
 Please check its [homepage](https://plumygame.github.io/mgpp/) to obtain more information.
 
+## For Users
+It's recommended to `watch` this project, which will notify you anything updated of the template.
+
 ## Licence
 GNU General Public License v3.0
