@@ -1,16 +1,10 @@
 plugins {
     id 'java'
-    id "io.github.liplum.mgpp" version "1.0.6"
+    id "io.github.liplum.mgpp" version "1.0.9"
 }
 
 group 'org.example'
 version '1.0'
-repositories {
-    mavenCentral()
-    use(io.github.liplum.mindustry.BuildScript) {
-        mindustryRepo()
-    }
-}
 sourceSets {
     main {
         java.srcDirs = ["src"]
@@ -18,6 +12,13 @@ sourceSets {
 }
 targetCompatibility = 8
 sourceCompatibility = 8
+repositories {
+    mavenCentral()
+    mindustryRepo()
+}
+dependencies {
+    importMindustry()
+}
 mindustry {
     dependency {
         mindustry version: 'v135'
@@ -42,18 +43,9 @@ mindustry {
         baseName = name
     }
 }
-repositories {
-    mavenCentral()
-}
-dependencies {
-    // Import dependencies from mindustry
-    use(io.github.liplum.mindustry.BuildScript) {
-        importMindustry()
-    }
-}
 mindustryAssets {
     // Set the assets root
-    rootAt "$rootDir/assets"
+    rootAt "$projectDir/assets"
 }
 test {
     useJUnitPlatform()
