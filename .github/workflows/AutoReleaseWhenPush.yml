@@ -57,4 +57,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TODAY: ${{ steps.date.outputs.date }}
-        run: gh release create AUTOR --title "Auto-release on $TODAY" --notes-file "$GITHUB_WORKSPACE/.github/workflows/EveryAutoCommitMessage.md" out/*.jar
+        run: gh release create AUTOR --title "Auto-release on $TODAY" --notes-file "$GITHUB_WORKSPACE/.github/workflows/ReleaseMessage.md" out/*.jar
