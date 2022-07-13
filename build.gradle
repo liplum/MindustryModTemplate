@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "io.github.liplum.mgpp" version "1.0.13"
+    id "io.github.liplum.mgpp" version "1.1.1"
 }
 
 group 'org.example'
@@ -35,10 +35,13 @@ mindustry {
     server {
         official version: 'v135'
     }
+    // The mod.[h]json can be manipulated if needed.
+    /*
     meta << ModMeta(
-        version: "1.0"
+        version: '1.0'
     )
     meta.displayName = "Template"
+    */
     def name = project.archivesBaseName
     deploy {
         baseName = name
@@ -47,7 +50,4 @@ mindustry {
 mindustryAssets {
     // Set the assets root
     rootAt "$projectDir/assets"
-}
-test {
-    useJUnitPlatform()
 }
