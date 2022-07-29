@@ -35,7 +35,7 @@ def transform_repo_to_class(repo: str) -> str:
         return b.getvalue()
 
 
-main_class_name = transform_repo_to_class(repo)
+main_class_name = transform_repo_to_class(repo) + "Mod"
 main_class_qualified_name = f"{package_name}.{main_class_name}"
 
 
