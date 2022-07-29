@@ -18,7 +18,7 @@ jobs:
       - name: Run Cleanup Script
         env:
           FULL_NAME: ${{ github.event.repository.full_name }}
-        run: python cleanup/main.py "$GITHUB_WORKSPACE" "$FULL_NAME"
+        run: python .github/workflows/cleanup/main.py "$GITHUB_WORKSPACE" "$FULL_NAME"
 
         # Commit modified files
       - name: Commit files
