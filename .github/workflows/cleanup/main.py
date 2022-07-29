@@ -66,6 +66,7 @@ def replace_readme():
 
 def delete_self():
     os.remove(".github/workflows/CleanUpTemplate.yml")
+    os.remove("LICENSE")
     shutil.rmtree(".github/workflows/cleanup")
 
 
