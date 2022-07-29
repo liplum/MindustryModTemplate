@@ -10,8 +10,10 @@ sourceSets {
         java.srcDirs = ["src"]
     }
 }
-targetCompatibility = 8
-sourceCompatibility = 8
+java {
+    targetCompatibility = 8
+    sourceCompatibility = 8
+}
 repositories {
     mavenCentral()
     mindustryRepo()
@@ -22,32 +24,19 @@ dependencies {
 mindustry {
     dependency {
         mindustry version: 'v136'
-        // To use jitpack, https://jitpack.io/#anuken/mindustryjitpack
-        // mindustryMirror version: 'bb8ab301fd'
-        arc version: 'v136'
+        arc version: 'v136.1'
     }
     client {
-        official version: 'v136'
-        // To use be, https://github.com/Anuken/MindustryBuilds/releases
-        // be version: '22747'
-        // be version: latest
+        official version: 'v136.1'
     }
     server {
-        official version: 'v136'
+        official version: 'v136.1'
     }
-    // The mod.[h]json can be manipulated if needed.
-    /*
-    meta << ModMeta(
-        version: '1.0'
-    )
-    meta.displayName = "Template"
-    */
     def name = project.archivesBaseName
     deploy {
         baseName = name
     }
 }
 mindustryAssets {
-    // Set the assets root
     rootAt "$projectDir/assets"
 }

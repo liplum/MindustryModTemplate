@@ -1,8 +1,12 @@
-displayName: "Template Mod"
-name: "template"
-author: "[#FBC02D[]]YourName[[]]"
-main: "example.TemplateMod"
-description: "A template for Mindustry modding. Repository is on github.com/liplum/MdtModTemplate."
-version: 1.0
-minGameVersion: 136
+displayName: "%Repository%"
+name: "%Repository%"
+author: "%Owner%"
+main: "%MainClassQualifiedName%"
+repo: "%Owner%/%Repository%"
+subtitle: ""
+description: ""
+version: "1.0"
+minGameVersion: "136"
 java: true
+hidden: false
+dependencies: []
