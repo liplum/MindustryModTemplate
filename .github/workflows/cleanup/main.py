@@ -29,7 +29,7 @@ def transform_repo_to_class(repo: str) -> str:
                     hyphen = False
                 else:
                     if i == 0:
-                        b.write(c.lower())
+                        b.write(c.upper())
                     else:
                         b.write(c)
         return b.getvalue()
@@ -37,6 +37,7 @@ def transform_repo_to_class(repo: str) -> str:
 
 main_class_name = transform_repo_to_class(repo)
 main_class_qualified_name = f"{package_name}.{main_class_name}"
+
 
 def replace_mod_meta():
     with open("mod.hjson", mode='r') as mod_meta:
@@ -48,8 +49,9 @@ def replace_mod_meta():
 
 
 def generate_main_class():
-    with open(f"src/{package_name}/{main_class_name}.java", mode='w') as main_clz:
-        content = main_class_source_template.replace("%PackageName%", package_name).replace("MainClassName",
+    os.makedirs(f"src/{package_name}", exist_ok=True)
+    with open(f"src/{package_name}/{main_class_name}.java", mode='w+') as main_clz:
+        content = main_class_source_template.replace("%PackageName%", package_name).replace("%MainClassName%",
                                                                                             main_class_name)
         main_clz.write(content)
 
@@ -58,7 +60,7 @@ def replace_readme():
     with open(".github/workflows/cleanup/README.md", mode='r') as readme:
         text = readme.read()
     text = text.replace("%Repository%", repo).replace("%Owner%", owner)
-    with open(".github/workflows/cleanup/README.md", mode='w') as readme:
+    with open("README.md", mode='w') as readme:
         readme.write(text)
 
 
