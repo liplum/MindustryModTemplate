@@ -10,7 +10,7 @@ jobs:
     if: github.event.repository.full_name != 'liplum/MdtModTemplate'
     steps:
       - name: Fetch Sources
-      - uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v2.4.0
 
       - uses: actions/setup-python@v4
         with:
