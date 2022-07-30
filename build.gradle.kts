@@ -2,7 +2,7 @@ import io.github.liplum.mindustry.*
 
 plugins {
     kotlin("jvm") version "1.7.0"
-    id("io.github.liplum.mgpp") version "1.1.8"
+    id("io.github.liplum.mgpp") version "1.1.9"
 }
 
 sourceSets {
