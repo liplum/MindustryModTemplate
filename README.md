@@ -13,7 +13,8 @@ It's recommended to `watch` this project, which will notify you anything updated
 ## How to use this template
 Hit the green button `Use this template` above, not the `fork`, and enter your repository name, always the same as a mod name.
 
-After the GitHub actions has done the clean-up job, you can clone your repository with a generated `main class` and `mod.hjson`.
+After the GitHub actions has done the clean-up job, you can clone your repository.
+There will be a generated `main class` and `mod.hjson`.
 
 ## Building through GitHub Actions
 Check the "Actions" tab on your repository page. 

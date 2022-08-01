@@ -32,7 +32,9 @@ def transform_repo_to_class(repo: str) -> str:
                         b.write(c.upper())
                     else:
                         b.write(c)
-        return b.getvalue()
+        name: str = b.getvalue()
+        name = name.removesuffix("Mod")
+        return name
 
 
 main_class_name = transform_repo_to_class(repo) + "Mod"
