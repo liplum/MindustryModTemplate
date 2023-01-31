@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "io.github.liplum.mgpp" version "1.1.10"
+    id "io.github.liplum.mgpp" version "1.2.0"
 }
 
 group 'org.example'
@@ -23,14 +23,14 @@ dependencies {
 }
 mindustry {
     dependency {
-        mindustry version: 'v136'
-        arc version: 'v136.1'
+        mindustryMirror version: 'v141.2'
+        arc version: 'v141.3'
     }
     client {
-        official version: 'v136.1'
+        official version: 'v141.3'
     }
     server {
-        official version: 'v136.1'
+        official version: 'v141.3'
     }
     def name = project.archivesBaseName
     deploy {

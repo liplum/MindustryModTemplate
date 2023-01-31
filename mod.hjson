@@ -6,7 +6,7 @@ repo: "%Owner%/%Repository%"
 subtitle: ""
 description: ""
 version: "1.0"
-minGameVersion: "136"
+minGameVersion: "141"
 java: true
 hidden: false
 dependencies: []
