@@ -1,7 +1,7 @@
 import io.github.liplum.mindustry.*
 
 plugins {
-    kotlin("jvm") version "1.7.0"
+    kotlin("jvm") version "1.8.0"
     id("io.github.liplum.mgpp") version "1.2.0"
 }
 
