@@ -3,10 +3,14 @@ import os
 import io
 
 args = sys.argv
-full_name = args[1]
+if len(args) == 1:
+    full_name = "example/ExampleMod"
+else:
+    full_name = args[1]
 owner, repo = full_name.split('/')
 package_name = owner.replace("-", "")
 main_class_template = """package %PackageName%;
+
 import mindustry.mod.*;
 
 public class %MainClassName% extends Mod {
@@ -33,11 +37,10 @@ readme_template = """<div align = center>
 """
 
 
-def transform_repo_to_class_name() -> str:
+def transform_repo_to_class_name():
     with io.StringIO() as b:
         hyphen = False
         for i, c in enumerate(repo):
-            c: str
             if c == '-':
                 hyphen = True
             else:
@@ -50,7 +53,8 @@ def transform_repo_to_class_name() -> str:
                     else:
                         b.write(c)
         name: str = b.getvalue()
-        name = name.removesuffix("Mod")
+        if name.endswith("Mod"):
+            return name[:-len("Mod")]
         return name
 
 
