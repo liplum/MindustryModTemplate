@@ -1,7 +1,6 @@
 import sys
 import os
 import io
-import shutil
 
 args = sys.argv
 full_name = args[1]
@@ -26,15 +25,15 @@ readme_template = """<div align = center>
 
 - [x] Create a new Mindustry Java mod project.
 - [ ] Edit the [mod.hjson](mod.hjson) for your mod.
-- [ ] Create your first content, a block, an item or anything you want.
+- [ ] Create your first content: a block or an item.
 - [ ] Put sprites and bundles into [assets](assets) directory.
 - [ ] Check the Mindustry's sources with your IDE or on its [repository](https://github.com/Anuken/Mindustry).
-- [ ] Make a beautiful [mod icon](icon.png) to replace the placeholder.
+- [ ] Make a nice [icon](icon.png) to replace the placeholder.
 - [ ] Push a commit with any message containing `[release]` to generate a release draft on [GitHub](https://github.com/%Owner%/%Repository%/releases). 
 """
 
 
-def transform_repo_to_class() -> str:
+def transform_repo_to_class_name() -> str:
     with io.StringIO() as b:
         hyphen = False
         for i, c in enumerate(repo):
@@ -55,12 +54,14 @@ def transform_repo_to_class() -> str:
         return name
 
 
-main_class_name = transform_repo_to_class() + "Mod"
+main_class_name = transform_repo_to_class_name() + "Mod"
 main_class_qualified_name = f"{package_name}.{main_class_name}"
 
 
 def replace_mod_meta():
-    text = readme_template.replace(
+    with open("mod.hjson", mode='r') as mod_meta:
+        text = mod_meta.read()
+    text = text.replace(
         "%Repository%", repo
     ).replace(
         "%Owner%", owner
@@ -83,9 +84,11 @@ def generate_main_class():
 
 
 def replace_readme():
-    with open(".github/workflows/cleanup/README.md", mode='r') as readme:
-        text = readme.read()
-    text = text.replace("%Repository%", repo).replace("%Owner%", owner)
+    text = readme_template.replace(
+        "%Repository%", repo
+    ).replace(
+        "%Owner%", owner
+    )
     with open("README.md", mode='w') as readme:
         readme.write(text)
 
@@ -93,7 +96,7 @@ def replace_readme():
 def delete_self():
     os.remove(".github/workflows/CleanUpTemplate.yml")
     os.remove("LICENSE")
-    shutil.rmtree(".github/workflows/cleanup")
+    os.remove("cleanup.py")
 
 
 def main():

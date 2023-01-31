@@ -7,7 +7,7 @@ jobs:
   template-cleanup:
     name: Template Cleanup
     runs-on: ubuntu-latest
-    if: github.event.repository.full_name != 'liplum/MdtModTemplate'
+    if: github.event.repository.full_name != 'liplum/MindustryModTemplate'
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v2.4.0
@@ -18,7 +18,7 @@ jobs:
       - name: Run Cleanup Script
         env:
           FULL_NAME: ${{ github.event.repository.full_name }}
-        run: python .github/workflows/cleanup/cleanup.py "$FULL_NAME"
+        run: python cleanup.py "$FULL_NAME"
 
         # Commit modified files
       - name: Commit files
