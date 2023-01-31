@@ -1,9 +1,11 @@
-name: Build Push Changes
-on: push
+name: Creat Release Draft
+on: workflow_dispatch
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GH_REPO: ${{ github.repository }}
     steps:
       - uses: actions/checkout@v2
 
@@ -22,7 +24,7 @@ jobs:
           chmod +x gradlew
           ./gradlew deploy
 
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Mod-Unzip-This
-          path: build/tmp/deploy/*.jar
+      - name: Create Release Draft
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create new --draft build/tmp/deploy/*.jar
