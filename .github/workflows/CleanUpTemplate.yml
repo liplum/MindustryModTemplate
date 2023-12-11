@@ -9,8 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.full_name != 'liplum/MindustryModTemplate'
     steps:
-      - name: Fetch Sources
-        uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v4
         with:
