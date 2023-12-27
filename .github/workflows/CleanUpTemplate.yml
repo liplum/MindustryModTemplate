@@ -5,6 +5,8 @@ on:
       - master
 jobs:
   template-cleanup:
+    permissions:
+      contents: write
     name: Template Cleanup
     runs-on: ubuntu-latest
     if: github.event.repository.full_name != 'liplum/MindustryModTemplate'
@@ -31,9 +33,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add .
           git commit -m "Template cleanup"
-        # Push changes
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          branch: master
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          git push
