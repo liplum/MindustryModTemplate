@@ -25,7 +25,7 @@ jobs:
           ./gradlew deploy
 
       - name: Upload Mod Jar
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ github.event.repository.name }} Pull Request
           path: build/tmp/deploy/*.jar
